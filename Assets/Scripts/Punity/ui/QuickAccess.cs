@@ -19,6 +19,20 @@ namespace Punity.ui
         {
             return new StyleFontDefinition((Font) Resources.Load(path));
         }
-        
+
+        public static TextElement QuickText(this TextElement te, string fontPath)
+        {
+            return new TextElement()
+            {
+                style =
+                {
+                    unityFontDefinition = LoadFont(fontPath),
+                    unityTextAlign = TextAnchor.MiddleCenter,
+                    whiteSpace = WhiteSpace.Normal
+                }
+                
+            }
+            ;
+        }
     }
 }

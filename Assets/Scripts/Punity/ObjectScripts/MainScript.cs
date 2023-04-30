@@ -12,6 +12,8 @@ namespace Punity.ObjectScripts
         protected TweenHolder TweenHolder;
         public float WorldHeight => MainCamera.orthographicSize*2f;
         public float WorldWidth => MainCamera.orthographicSize*MainCamera.aspect*2f;
+        protected float LastFrameTime = 0f; // time at the last frame, useful for periodic events
+        
         
         private void Awake()
         {
@@ -26,6 +28,7 @@ namespace Punity.ObjectScripts
         {
             
             UpdateMain();
+            LastFrameTime = Time.time;
         }
 
         private void LateUpdate()
@@ -46,6 +49,11 @@ namespace Punity.ObjectScripts
         {
             MainCamera = Camera.main;
             MainCamera.orthographicSize = Constants.WorldHeight;
+        }
+
+        protected bool FirePeriodicEvent(float period)
+        {
+            return (int) (LastFrameTime / period) != (int) (Time.time / period);
         }
 
         protected virtual void InitializeMain(){} // this function must be overriden in the main instead of unity awake
