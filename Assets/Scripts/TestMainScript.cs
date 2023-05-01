@@ -1,5 +1,4 @@
-﻿using Punity;
-using Punity.ObjectScripts;
+﻿using Punity.ObjectScripts;
 using UnityEngine;
 
 namespace DefaultNamespace
